@@ -1,0 +1,286 @@
+<!-- 
+  Hello 😊.
+
+  This template is designed and developed by Nisar Hassan Naqvi
+  for anyone to use for free or customize the way they like.
+
+  Github Repo: https://github.com/nisarhassan12/portfolio-template/
+  My Website: https://nisar.dev
+
+  For business & inquires, contact me => syednisarhassan12@gmail.com
+-->
+
+<!--
+  Follow the instructions written in comments to create your stunning portfolio
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" type="image/png" href="./images/favicon.png" />
+
+  <!-- Put your site title here -->
+  <title>
+    Markus Bauer
+  </title>
+
+  <meta name="description" content="Add small description of yourslef.">
+  <!-- Add some coding keywords below, Ex: (React, CSS etc) -->
+  <meta name="keywords" content="Put your name, skills and some coding keywords" />
+  <link rel="stylesheet" href="index.css" />
+</head>
+
+<body>
+
+  <!-- ***** Header ***** -->
+
+  <header class="header" role="banner" id="top">
+    <div class="row">
+      <nav class="nav" role="navigation">
+        <ul class="nav__items">
+          <li class="nav__item">
+            <a href="#about" class="nav__link">About</a>
+          </li>
+          <li class="nav__item"><a href="https://drive.google.com/file/d/1HeH-bjMwixnRRlYcqQJ_qjCEP9w_bzHj/view?usp=sharing" class="nav__link" target="_blank">Resume</a></li>
+          <li class="nav__item"><a href="#work" class="nav__link">Projects</a></li>
+          <li class="nav__item"><a href="#clients" class="nav__link">Skills</a></li>
+          <li class="nav__item">
+            <a href="#contact" class="nav__link">Contact</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="header__text-box row">
+      <div class="header__text">
+        <h1 class="heading-primary">
+          <!-- Replace the following name with your name -->
+          <span>Markus Bauer</span>
+        </h1>
+        <!-- Put a small paragraph about yourself -->
+        <p>Currently looking for work oppurtunities. Check out some of my
+          recent projects below!</p>
+        <a href="#contact" class="btn btn--pink">Get in touch</a>
+      </div>
+    </div>
+  </header>
+
+  <main role="main">
+
+<!-- ***** About ***** -->
+
+  <section class="about" id="about">
+    <div class="row">
+      <h2>About Me</h2>
+      <div class="about__content">
+        <div class="about__text">
+          <!-- Replace the below paragraph with info about yourself -->
+          <p>
+            I am a recent graduate from the University of California, Berkeley, holding a Master of Engineering degree in Electrical Engineering and Computer Science with a focus on Data Science. 
+            I am seeking opportunities in data science and machine learning.
+            With a natural curiosity and a passion for problem-solving, I am drawn to data-driven challenges that offer insights into understanding the world. 
+            I pride myself on being a dedicated team player, always committed to contributing to the success of the team. 
+            I have extensive experience in working with and analyzing data, and I am eager to further develop my skills and gain more experience in the field.
+          </p>
+          <!-- Provide a link to your resume -->
+          <a href="https://drive.google.com/file/d/1HeH-bjMwixnRRlYcqQJ_qjCEP9w_bzHj/view?usp=sharing" class="btn" target="_blank">My Resume</a>
+        </div>
+
+        <div class="about__photo-container">
+          <!-- Add a nice photo of yourself -->
+          <img class="about__photo" src="./images/me.jpg" alt="" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <!-- ***** Work ***** -->
+
+    <section class="work" id="work">
+      <div class="row">
+        <h2>My Projects</h2>
+        <div class="work__boxes">
+
+          <!-- Each div with the work__box class is a project. -->
+
+          <div class="work__box">
+            <div class="work__text">
+              <h3>UC Berkeley Capstone Project</h3>
+              <p>Machine Learning for Medical Image Analysis: A Tool for Early Detection of Cardiovascular Disease</p>
+              <ul class="work__list">
+                <li>Image Segmentation</li>
+                <li>GPU and High-Performance Computing (HPC)</li>
+                <li>Machine Learning Model Training and Optimization</li>
+                <li>Interdisciplinary Team Collaboration</li>
+                <li>Stakeholder Management</li>
+              </ul>
+
+              <div class="work__links">
+                <a href="ucb-capstone.html" class="link__text">
+                  Read More <span>&rarr;</span>
+                </a>
+              </div>
+            </div>
+            <div class="work__image-box">
+              <img src="./images/capstone.png" class="work__image" alt="Project 1" />
+            </div>
+          </div>
+
+          <div class="work__box">
+            <div class="work__text">
+              <h3>UC Berkeley Data Science Project</h3>
+              <p>
+                Disaster Type and Damage Level Classification
+              </p>
+              <ul class="work__list">
+                <li>Python (Pandas, Numpy, Sklearn, Matplotlib, Seaborn)</li>
+                <li>Computer Vision</li>
+                <li>Exploratory Data Analysis and Data Visualization</li>
+                <li>Feature Engineering</li>
+                <li>Model Training and Evaluation</li>
+              </ul>
+
+              <div class="work__links">
+                <a href="ds-project.html" class="link__text">
+                  Read More <span>&rarr;</span>
+                </a>
+                <a href="https://github.com/mbauergit/Disaster-Damage-Level-Classification/tree/main" target="_blank">
+                  <img src="./images/github.svg" class="work__code" title="View Source Code" alt="GitHub">
+                </a>
+              </div>
+            </div>
+            <div class="work__image-box">
+              <img src="./images/datascience.png" class="work__image" alt="Project 1" />
+            </div>
+          </div>
+
+          <div class="work__box">
+            <div class="work__text">
+              <h3>UC Berkeley Parallel Programming Project</h3>
+              <p>
+                Parallelizing the Genetic Algorithm for BoxCar2D
+              </p>
+              <ul class="work__list">
+                <li>C++</li>
+                <li>MPI</li>
+                <li>Parallel Programming</li>
+                <li>Genetic Algorithms</li>
+              </ul>
+
+              <div class="work__links">
+                <a href="parallel-project.html" class="link__text">
+                  Read More <span>&rarr;</span>
+                </a>
+                <a href="https://github.com/mbauergit/Parallel-Boxcar2d">
+                  <img src="./images/github.svg" class="work__code" title="View Source Code" alt="GitHub">
+                </a>
+              </div>
+            </div>
+            <div class="work__image-box">
+              <img src="./images/parallel2.png" class="work__image" alt="Project 3" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ***** Clients ***** -->
+
+    <section class="client" id="clients">
+      <div class="row">
+        <h2>Skills</h2>
+        <ul class="work__list">
+            <li>Programming Languages:
+                <ul class="work__list">
+                    <li>Python: numpy, pandas, pytorch, sklearn, seaborn, matplotlib, huggingface</li>
+                    <li>SQL</li>
+                    <li>C</li>
+                    <li>C++</li>
+                    <li>R</li>
+                    <li>MASM</li>
+                </ul>
+            </li>
+            <li>Programming Skills:
+                <ul class="work__list">
+                    <li>GitHub</li>
+                    <li>Machine Learning</li>
+                    <li>Parallel Programming: MPI, OpenMP, CUDA, OpenCL</li>
+                    <li>Data Engineering</li>
+                </ul>
+            </li>
+            <li>Applications:
+                <ul class="work__list">
+                    <li>Microsoft: Word, Excel, PowerPoint</li>
+                    <li>PowerBI</li>
+                    <li>QGIS</li>
+                    <li>Google Earth</li>
+                    <li>Paraview</li>
+                </ul>
+            </li>
+            <li>Other:
+                <ul class="work__list">
+                    <li>Data Collection and Analysis</li>
+                    <li>Basic German and Mandarin Understanding</li>
+                </ul>
+            </li>
+        </ul>
+      </div>
+    </section>
+
+    
+  </main>
+
+  <!-- ***** Contact ***** -->
+
+  <section class="contact" id="contact">
+    <div class="row">
+      <h2>Get in Touch</h2>
+      <div class="contact__info">
+        <ul class="work__list">
+        <!-- Replace the email with yours -->
+        <a href="mailto:markus.bauer@berkeley.edu" class="btn">Email: markus.bauer@berkeley.edu</a>
+        <a href="https://www.linkedin.com/in/markusabauer/" class="btn">Linkedin</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ***** Footer ***** -->
+
+  <footer role="contentinfo" class="footer">
+    <div class="row">
+      <!-- Update the links to point to your accounts -->
+      <ul class="footer__social-links">
+        <li class="footer__social-link-item">
+          <a href="https://github.com/mbauergit" title="Link to Github Profile">
+            <img src="./images/github.svg" class="footer__social-image" alt="Github">
+          </a>
+        </li>
+        <li class="footer__social-link-item">
+          <a href="https://www.linkedin.com/in/markusabauer/">
+            <img src="./images/linkedin.svg" title="Link to Linkedin Profile" class="footer__social-image" alt="Linkedin">
+          </a>
+        </li>
+      </ul>
+
+      <!-- If you give me some credit by keeping the below paragraph, will be huge for me 😊 Thanks. -->
+      <p>
+        &copy; 2020 - Template designed & developed by <a href="https://nisar.dev" class="link">Nisar</a>.
+      </p>
+      <div class="footer__github-buttons">
+        <iframe
+          src="https://ghbtns.com/github-btn.html?user=nisarhassan12&repo=portfolio-template&type=watch&count=true"
+          frameborder="0" scrolling="0" width="170" height="20" title="Watch Portfolio Template on GitHub">
+        </iframe>
+      </div>
+    </div>
+  </footer>
+
+  <a href="#top" class="back-to-top" title="Back to Top">
+    <img src="./images/arrow-up.svg" alt="Back to Top" class="back-to-top__image"/>
+  </a>
+  <script src="./index.js"></script>
+</body>
+
+</html>

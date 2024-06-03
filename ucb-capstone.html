@@ -1,0 +1,190 @@
+<!-- 
+  Hello 😊.
+
+  This template is designed and developed by Nisar Hassan Naqvi
+  for anyone to use for free or customize the way they like.
+
+  Github Repo: https://github.com/nisarhassan12/portfolio-template/
+  My Website: https://nisar.dev
+
+  For business & inquires, contact me => syednisarhassan12@gmail.com
+-->
+
+<!--
+  Follow the instructions written in comments to create your stunning portfolio
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" type="image/png" href="./images/favicon.png" />
+
+  <!-- Put your site title here -->
+  <title>
+    Markus Bauer
+  </title>
+
+  <meta name="description" content="Add small description of yourslef.">
+  <!-- Add some coding keywords below, Ex: (React, CSS etc) -->
+  <meta name="keywords" content="Put your name, skills and some coding keywords" />
+  <link rel="stylesheet" href="index.css" />
+</head>
+
+<body>
+
+  <!-- ***** Header ***** -->
+
+  <header class="header" role="banner" id="top">
+    <div class="row">
+      <nav class="nav" role="navigation">
+        <ul class="nav__items">
+          <li class="nav__item">
+            <a href="index.html#about" class="nav__link">About</a>
+          </li>
+          <li class="nav__item"><a href="index.html#work" class="nav__link">Projects</a></li>
+          <li class="nav__item"><a href="index.html#clients" class="nav__link">Skills</a></li>
+          <li class="nav__item">
+            <a href="index.html#contact" class="nav__link">Contact</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="header__text-box row">
+      <div class="header__text">
+        <h1 class="heading-primary">
+          <!-- Replace the following name with your name -->
+          <span>UC Berkeley Capstone Project</span>
+        </h1>
+        <!-- Put a small paragraph about yourself -->
+        <p>Machine Learning for Medical Image Analysis: A Tool for Early Detection of Cardiovascular Disease</p>
+        <ul class="work__list">
+          <li>Image Segmentation</li>
+          <li>GPU and High-Performance Computing (HPC)</li>
+          <li>Machine Learning Model Training and Optimization</li>
+          <li>Interdisciplinary Team Collaboration</li>
+          <li>Stakeholder Management</li>
+        </ul>
+        <a href="#project summary" class="btn btn--pink">Project Summary</a>
+        <a href="#personal takeaways" class="btn btn--pink">Personal Takeaways</a>
+      </div>
+    </div>
+  </header>
+
+  <main role="main">
+    <section class="about" id="project summary">
+      <div class="row">
+        <h2>Project Summary</h2>
+
+        <h3>Introduction:</h3>
+        <p>nnU-Net is an industry standard machine learning model that revolutionizes medical image segmentation by automating the process, eliminating the need for time-consuming and error-prone manual segmentations. Utilizing a deep learning architecture known as U-Net, nnU-Net adapts to different datasets by optimizing hyperparameters and introducing randomization to improve model performance. My group’s project explores nnU-Net’s ability to segment the coronary arteries and compares it to a novel segmentation method called SeqSeg. SeqSeg, developed by our PhD mentor, enhances blood vessel segmentation in medical imaging by using centerlines to extract local subvolumes, which are then used to train an nnU-Net model. This approach allows SeqSeg to accurately predict and combine subvolume segmentations into a continuous and detailed vessel structure, improving accuracy and generalization. After comparing the results of nnU-Net and SeqSeg, my group aims to optimize SeqSeg for the coronary arteries to achieve accurate segmentation models.</p>
+
+        <h3>Methods:</h3>
+        <p>To establish a baseline for our results, we used the nnU-Net model for predictions, training it with 40 CT images from the ASOCA challenge dataset in various configurations. The nnU-Net model, fully automated from pre-processing to predictions, uses different methods for identifying inputs, including 3D full resolution and 2D slices. We chose the 3D full resolution configuration for training as it provided the most accurate results. A comparative study was conducted to assess the nnU-Net's performance with different training data sizes, evaluating predictions using dice scores to measure overlap with ground truth segmentations.</p>
+
+        <ul class="work__list">
+            <li>Case 1: 30 training images, 10 testing images</li>
+            <li>Case 2: 20 training images, 20 testing images</li>
+            <li>Case 3: 40 training images, 10 testing images</li>
+        </ul>
+
+        <p>For our SeqSeg model, we extracted subvolumes from the training datasets using various parameters. Each team member focused on different configurations to produce between 40,000 - 70,000 data points, which were used to train nnU-Net. SeqSeg then extracted subvolumes from the testing dataset to make segmented predictions using the trained nnU-Net model. The different configurations are compared against each other, and then against the nnU-Net results.</p>
+
+        <h3>Results and Analysis:</h3>
+        <h4>nnU-Net Results:</h4>
+        <p>The nnU-Net model required approximately 24 hours and 1,000 epochs to train on the 40-image dataset, producing validation dice scores. Predictions were made on a 20 CT image testing dataset, with dice scores obtained from the ASOCA challenge. The results showed that the 3D full resolution configuration had the highest dice score for the testing dataset (0.850), indicating its superior performance in predicting intricate blood vessels compared to 3D low resolution (0.708) and 2D full resolution (0.825). However, some predictions displayed discontinuities in the vascular branches compared to the ground truth.</p>
+
+        <div class="image-container">
+            <img src="./images/ucb-cap-fig1.png" alt="Disconnected arteries from predicted output">
+            <p>Figure 1. Disconnected arteries from predicted output</p>
+        </div>
+
+        <p>In addition to testing different nnU-Net configurations, we trained the nnU-Net model at 3D full resolution with varying proportions of training and testing datasets. The table below shows that while increasing the training data generally led to higher dice scores, the improvements were marginal, indicating the need for qualitative analysis. Case 1 (30 training, 10 testing) and Case 2 (20 training, 20 testing) predictions were compared qualitatively using ground truth images as shown in Figure 2. Case 1 showed better continuity in larger arteries but had some discontinuities and incomplete predictions of smaller arteries. Case 2 had more discontinuities and less effective extraction of smaller arteries due to the smaller training dataset, highlighting the impact of training data size on model performance.</p>
+
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Dataset (Training, Testing)</th>
+                    <th>Normal, Diseased</th>
+                    <th>Dice score (Validation, Test)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Case 1: (30,10)</td>
+                    <td>(20, 10)</td>
+                    <td>(0.929, 0.818)</td>
+                </tr>
+                <tr>
+                    <td>Case 2: (20, 20)</td>
+                    <td>(10, 10)</td>
+                    <td>(0.937, 0.824)</td>
+                </tr>
+                <tr>
+                    <td>Case 3: (40,10)</td>
+                    <td>(20,20)</td>
+                    <td>(0.922, 0.85)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="image-container">
+            <img src="./images/ucb-cap-fig2.png" alt="Case Predictions">
+            <p>Figure 2. (a) Ground truth, (b) Prediction of case 1, (c) Prediction of case 2</p>
+        </div>
+
+        <h4>SeqSeg Results:</h4>
+        <p>For SeqSeg predictions, two sets of subvolumes were extracted for training. The first set, with 41,937 subvolumes, consisted of single, unaltered samples at each step along the vessel, while the second set, with 69,528 subvolumes, included three samples per step with Gaussian-distributed shifts to introduce variability. Model A, trained on the first set, achieved a validation DICE score of 0.9401, but struggled with bifurcations in predictions. Model B, trained on the second set, had a validation DICE score of 0.9227 and performed better in tracing branches without producing artifact clusters. Model B's transformations allowed it to better distinguish vessels from surrounding tissue.</p>
+
+        <div class="image-container">
+            <img src="./images/ucb-cap-fig3.png" alt="Model A prediction">
+            <p>Figure 3. Model A prediction using SeqSeg and no transformations on subvolumes</p>
+        </div>
+
+        <div class="image-container">
+            <img src="./images/ucb-cap-fig4.png" alt="Model B prediction">
+            <p>Figure 4. Model B prediction using SeqSeg with transformations applied to subvolumes</p>
+        </div>
+
+        <p>Compared to nnU-Net, SeqSeg detected more branches and avoided voids between branches, though its predictions were slightly noisier. A visual comparison with their predictions overlapped is shown below. Further refinement of SeqSeg could improve its accuracy and maintain its broader detection capability which would undoubtedly make it the superior method for coronary artery segmentation.</p>
+
+        <div class="image-container">
+            <img src="./images/ucb-cap-fig5.png" alt="Model B output overlaid with nnU-Net prediction">
+            <p>Figure 5. Model B output (blue) overlaid with the nnU-Net prediction (orange)</p>
+        </div>        
+      </div>
+
+    </section>
+
+    <section class="about" id="personal takeaways">
+      <div class="row">
+        <h2>Personal Takeaways</h2>
+        <p>This project experience was extremely valuable, broadening my knowledge base and providing hands-on experience with a long-term multidisciplinary project. Before joining this project, I had a strong foundation in machine learning but was eager to explore its diverse applications. This curiosity led me to participate in this project, which focused on applying machine learning in the medical field. Throughout the project, I was introduced to several new concepts and areas of study.</p>
+
+        <p>Firstly, I gained a deeper understanding of biological concepts, particularly the heart and its surrounding vasculature. This biological knowledge was essential for the project's focus on segmenting the coronary arteries. I also was introduced to various image segmentation tools and packages, such as VTK, VMTK, and Paraview, which were crucial for processing and analyzing medical images and the resulting outputs.</p>
+
+        <p>Additionally, this experience significantly enhanced my machine learning expertise. I explored industry-standard models like nnU-Net, delving into their architectures and understanding their inner workings. Working with these advanced models provided practical experience with GPUs and high-performance computing (HPC). Our group utilized Berkeley’s HPC clusters (Savio) for training and testing, which further honed my skills in managing and optimizing computational resources.</p>
+
+        <p>In addition to enhancing my knowledge and technical skills, this project provided invaluable experience in participating in a long-term, multidisciplinary initiative. Our team comprised students from diverse fields, including computer science, bioengineering, and mechanical engineering. Collaborating with them necessitated learning new concepts from other disciplines and effectively communicating my expertise in computer science to my teammates.</p>
+
+        <p>Our team navigated through all phases of a long-term project lifecycle. We engaged in an extensive planning process, setting goals and establishing checkpoints. However, our plans had to remain flexible as we encountered and adapted to numerous obstacles and challenges. Despite the frustrations, these challenges offered important lessons in teamwork and problem-solving, as we worked together to address and overcome them.</p>
+
+        <p>To manage our project effectively, we utilized various resources and applications to stay organized and allocate tasks efficiently. This ensured we made the best use of all available resources. Additionally, we reported and presented our progress to a project stakeholder on a weekly basis, providing status updates and collaborating to address any issues. This regular interaction helped us stay aligned with project goals and improved our ability to communicate complex information clearly and succinctly. Ultimately, this project provided experience beyond just technical skills that can be applied to any future project.</p>
+        
+        <div class="back-button">
+          <a href="index.html#work">&larr; Back to Home</a>
+      </div>  
+      <script src="./index.js"></script>
+      </div>
+
+    </section>
+
+
+
+  </main>
+  
+</body>
+
+</html>

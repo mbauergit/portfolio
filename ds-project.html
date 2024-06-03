@@ -1,0 +1,187 @@
+<!-- 
+  Hello 😊.
+
+  This template is designed and developed by Nisar Hassan Naqvi
+  for anyone to use for free or customize the way they like.
+
+  Github Repo: https://github.com/nisarhassan12/portfolio-template/
+  My Website: https://nisar.dev
+
+  For business & inquires, contact me => syednisarhassan12@gmail.com
+-->
+
+<!--
+  Follow the instructions written in comments to create your stunning portfolio
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" type="image/png" href="./images/favicon.png" />
+
+  <!-- Put your site title here -->
+  <title>
+    Markus Bauer
+  </title>
+
+  <meta name="description" content="Add small description of yourslef.">
+  <!-- Add some coding keywords below, Ex: (React, CSS etc) -->
+  <meta name="keywords" content="Put your name, skills and some coding keywords" />
+  <link rel="stylesheet" href="index.css" />
+</head>
+
+<body>
+
+  <!-- ***** Header ***** -->
+
+  <header class="header" role="banner" id="top">
+    <div class="row">
+      <nav class="nav" role="navigation">
+        <ul class="nav__items">
+          <li class="nav__item">
+            <a href="index.html#about" class="nav__link">About</a>
+          </li>
+          <li class="nav__item"><a href="index.html#work" class="nav__link">Projects</a></li>
+          <li class="nav__item"><a href="index.html#clients" class="nav__link">Skills</a></li>
+          <li class="nav__item">
+            <a href="index.html#contact" class="nav__link">Contact</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="header__text-box row">
+      <div class="header__text">
+        <h1 class="heading-primary">
+          <!-- Replace the following name with your name -->
+          <span>UC Berkeley Data Science Project</span>
+        </h1>
+        <!-- Put a small paragraph about yourself -->
+        <p>Disaster Type and Damage Level Classification</p>
+        <ul class="work__list">
+          <li>Python (Pandas, Numpy, Sklearn, Matplotlib, Seaborn)</li>
+          <li>Computer Vision</li>
+          <li>Exploratory Data Analysis and Data Visualization</li>
+          <li>Feature Engineering</li>
+          <li>Model Training and Evaluation</li>
+        </ul>
+        <a href="#project summary" class="btn btn--pink">Project Summary</a>
+        <a href="#personal takeaways" class="btn btn--pink">Personal Takeaways</a>
+        <a href="https://github.com/mbauergit/Disaster-Damage-Level-Classification/tree/main" target="_blank" class="btn btn--pink">Github</a>
+      </div>
+    </div>
+  </header>
+
+  <main role="main">
+    <section class="about" id="project summary">
+      <div class="row">
+        <h2>Project Summary</h2>
+        
+        <h3>Introduction:</h3>
+        <p>Satellite imagery is a type of data that is available in vast amounts which helps a diverse range of scientists, urban planners, and risk assessors, among many others, develop their policies. Computational techniques offer automatization and fast processing capabilities for tasks dealing with satellite imagery. One such task is the recognition of an emergency or natural disaster. In this project, my team presents an automated model that classifies different images depending on the disaster type (wildfire, flooding, hurricane) and the damage level of the buildings (0-3). We will define task A as the classification of the disaster type (fire or flood) of an image and task B as the classification of the damage level of buildings (0, 1, 2, or 3). Our approach is based on the xBD dataset, which provides a diverse set of annotated satellite imagery covering various disaster types and geographical locations that aim to facilitate the development of vision models that can automate the assessment of building damage and improve disaster response strategies.</p>
+      
+        <h3>Methods:</h3>
+        <p>Our dataset comprises 26,535 images, divided into three disaster types: hurricane-matthew (11,151 images), socal-fire (8,380 images), and midwest-flooding (7,004 images), sourced from the xBD dataset. These images capture buildings before and after disasters, with human-analyzed 'truth' labels introducing potential bias due to subjective interpretation. Notably, there's a class imbalance, particularly in damage level 0. Additionally, image sizes vary across disaster types, with hurricane-matthew images being smaller. </p>
+      
+        <p>Exploratory analysis revealed different features that could differentiate class types. Boxplots in figure 1 show that the distribution of RGB magnitudes varies among disaster types, providing an opportunity for differentiation. To enhance our analysis, we employed transformation techniques such as grayscale conversion and filters like Sobel Edge, Local Binary Pattern, and Gabor, which offered additional features for discriminating damage levels. This is visualized in figure 2 which shows that images with a higher damage level have different edge and textural patterns than those without such damage. These analyses guided our model development, especially in distinguishing different levels of damage.</p>
+        <div class="image-container">
+          <img src="./images/ucb-ds-fig1.png" alt="Disconnected arteries from predicted output">
+          <p>Figure 1. Boxplots showing the distribution of image widths and heights.</p>
+        </div>
+
+        <div class="image-container">
+          <img src="./images/ucb-ds-fig2.png" alt="Disconnected arteries from predicted output">
+          <p>Figure 2. Kernel density estimation and boxplot for the mean, log mean, variance, and log variance of the LBP applied to all the images of the hurricane-matthew dataset.</p>
+        </div>
+
+        <p>In our methodology, we initially explored raw pixel RGB values but later transitioned to using averages of pixel values due to resource constraints. We further enriched our dataset by deriving additional features from image filters like Sobel Edge, Gabor, and Local Binary Pattern (LBP), shedding light on edges, orientation patterns, and pixel intensities. To address skewed distributions, we applied log transformation and engineered new features. Task A focused on binary classification of disaster types using logistic regression, leveraging color and edge-related features. Task B dealt with multiclass classification of damage levels using the same approach, with the imbalanced-learn library employed to tackle class imbalance through oversampling and undersampling. Evaluation metrics included accuracy, precision, recall, and false positive rate for Task A, while Task B's performance was evaluated using the F1 score, all assessed through cross-validation and independent testing.</p>
+
+        <h3>Results and Analysis:</h3>
+        <h4>Task A:</h4>
+        <p>Our final model for Task B includes the following features:</p>
+        <ul class="work__list">
+          <li>Mean Red Value</li>
+          <li>Mean Green Value</li>
+          <li>Mean Blue Value</li>
+          <li>Mean Lightness</li>
+          <li>Variance Red Value</li>
+          <li>Variance Green Value</li>
+          <li>Variance Blue Value</li>
+          <li>Variance Lightness</li>
+          <li>Sobel Edge Filter Log Variance</li>
+        </ul>
+        <p>We initially began with using just the Mean Red Value, achieving a test accuracy of 76%. Incorporating averages of all color bands subsequently improved accuracy to 80%. Further enhancements, including color variance, resulted in an accuracy of 90.4%. Adding gray transformation and lightness mean/variance, alongside image transformations, led to a final model with a test accuracy of 94.8%, alongside 94.6% precision, 95.9% recall, and a 6.4% false positive rate. The confusion matrix in figure 3 illustrates commendable classification performance, with a balanced error distribution. The ROC curve in figure 4 further confirms the model's robustness, exhibiting a strong AUC of 0.975. Despite unsuccessful attempts with LASSO regression and outlier removal, maintaining the entire dataset proved optimal for model generalization.</p>
+        <div class="image-container">
+          <img src="./images/ucb-ds-fig3.png" alt="Disconnected arteries from predicted output">
+          <p>Figure 3. Confusion Matrix for Task A</p>
+        </div>
+
+        <div class="image-container">
+          <img src="./images/ucb-ds-fig4.png" alt="Disconnected arteries from predicted output">
+          <p>Figure 4. ROC Curve for Task A</p>
+        </div>
+      
+        <h4>Task B:</h4>
+        <p>Our final model for Task B includes the following features:</p>
+        <ul class="work__list">
+          <li>Sobel Edge Filter Log Variance</li>
+          <li>Sobel Edge Filter Log Mean</li>
+          <li>Edges 0-0.1</li>
+          <li>Edges 0.1-0.2</li>
+          <li>Edges 0.2-0.3</li>
+          <li>Edges 0.3-0.4</li>
+          <li>Edges 0.4-0.5</li>
+          <li>Edges 0.5-0.6</li>
+          <li>Gabor Log Variance</li>
+          <li>Gabor Log Mean</li>
+          <li>LBP Log Variance</li>
+          <li>LBP Log Mean</li>
+        </ul>
+        <p>For Task B, we utilized SEF, Gabor Filter, and LBP as the color features weren't effective. Initially, our model achieved around 50% accuracy and an F1 score of 0.48. However, it predominantly predicted Damage Level 1 due to dataset imbalance, with Level 1 having the most training points. To address this, we experimented with oversampling using the imblearn package. Although this did not result in a significant improvement in the F1 score (0.485), further inspection of the predictions revealed that the distribution of predictions was more balanced.</p>
+        
+        <p>The confusion matrix in figure 5 confirmed the effectiveness of oversampling but also highlighted mixed performance across damage levels. The model excels in predicting damage level 3, showcasing higher accuracy for severe damage instances. However, it tends to over-predict this level, particularly when the actual damage is lower, leading to false positives that affect precision. Imblearn utilization impacts performance, especially for damage level 1, revealing inconsistency in classification. Levels 0 and 2 pose challenges, with more misclassifications, indicating difficulty in differentiation between those specific levels.</p>
+        
+        <p>The ROC curves in figure 6 validate these findings, with class 3 exhibiting the strongest curve and classes 0 and 2 the weakest. Despite achieving around 50% accuracy, the model outperforms random guessing or an imbalance model significantly. Other attempted methods, such as using subsets of edge detection filters or reintroducing color variables, did not enhance the model, underscoring the importance of maintaining the integrity of the entire feature set.</p>
+        
+        <div class="image-container">
+          <img src="./images/ucb-ds-fig5.png" alt="Disconnected arteries from predicted output">
+          <p>Figure 5. Confusion Matrix for Task B</p>
+        </div>
+
+        <div class="image-container">
+          <img src="./images/ucb-ds-fig6.png" alt="Disconnected arteries from predicted output">
+          <p>Figure 6. ROC Curves for Task B</p>
+        </div>
+      </div>
+
+    </section>
+
+    <section class="about" id="personal takeaways">
+      <div class="row">
+        <h2>Personal Takeaways</h2>
+
+        <p>This project served as a crucial learning experience, providing me with a comprehensive understanding of the data science lifecycle. From sampling data to conducting exploratory analysis, feature engineering, model selection, training, and result analysis, I navigated through each stage of the process. What became evident was the iterative nature of this journey, wherein my team and I constantly oscillated between different steps of the cycle.</p>
+        
+        <p>Rather than a linear progression, this process resembled a continuous loop, where insights gained from data exploration informed the creation of new features, which in turn influenced model development and subsequent analysis. This iterative approach allowed us to refine our understanding of the problem domain, continually improving our models' performance.</p>
+
+        <p>Moreover, the project necessitated us to thoroughly consider the implications of our data, model, and results. This included addressing potential biases and delving into the significance of false positives and negatives within the context of our problem. By emphasizing the need to view data beyond its numerical form, the project underscored the importance of adopting a holistic approach to data analysis. This broader perspective is crucial for data scientists as it enables them to extract more meaningful insights and conclusions about the world. It also fosters a heightened awareness of the impact of their work, promoting a deeper understanding of the ethical and societal implications inherent in data science endeavors.</p>
+
+        <p>In terms of technical expertise, this project significantly enhanced my Python proficiency, particularly with data visualization. Utilizing essential packages like Matplotlib and Seaborn was crucial for creating our visualizations. Although I had some prior familiarity with these tools, the project substantially elevated my proficiency in leveraging their functionalities. Additionally, I gained proficiency in utilizing data analysis libraries such as sklearn and imblearn. This enabled me to explore various model fitting approaches and experiment with diverse feature engineering techniques, such as oversampling and PCA. My knowledge of different models and techniques was also enhanced as we had to carefully consider which models were appropriate for our tasks.</p>
+        
+        <div class="back-button">
+          <a href="index.html#work">&larr; Back to Home</a>
+      </div>  
+      <script src="./index.js"></script>
+      </div>
+
+    </section>
+
+
+
+  </main>
+  
+</body>
+
+</html>
