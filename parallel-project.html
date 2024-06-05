@@ -44,6 +44,7 @@
           <li class="nav__item">
             <a href="index.html#about" class="nav__link">About</a>
           </li>
+          <li class="nav__item"><a href="https://drive.google.com/file/d/1HeH-bjMwixnRRlYcqQJ_qjCEP9w_bzHj/view?usp=sharing" class="nav__link" target="_blank">Resume</a></li>
           <li class="nav__item"><a href="index.html#work" class="nav__link">Projects</a></li>
           <li class="nav__item"><a href="index.html#clients" class="nav__link">Skills</a></li>
           <li class="nav__item">
@@ -59,14 +60,14 @@
           <span>Parallelizing the Genetic Algorithm for BoxCar2D</span>
         </h1>
         <!-- Put a small paragraph about yourself -->
-        <p>UC Berkeley Parallel Programming Project</p>
+        <p>UC Berkeley Parallel Programming Project (04/2024 - 05/2024)</p>
         <ul class="work__list">
           <li>C++</li>
           <li>MPI</li>
           <li>Parallel Programming</li>
           <li>Genetic Algorithms</li>
         </ul>
-        <a href="#project summary" class="btn btn--pink">Project Summary</a>
+        <a href="#project summary" class="btn btn--pink">Project Description</a>
         <a href="#personal takeaways" class="btn btn--pink">Personal Takeaways</a>
         <a href="https://github.com/mbauergit/Parallel-Boxcar2d" target="_blank" class="btn btn--pink">Github</a>
       </div>
@@ -76,8 +77,12 @@
   <main role="main">
     <section class="about" id="project summary">
       <div class="row">
-        <h2>Project Summary</h2>
-        
+        <h2>Project Description</h2>
+
+        <h3>Abstract:</h3>
+        <p>
+          Our project parallelized genetic algorithms in the BoxCar2D simulation to optimize 2D vehicle design, using the MPI framework in a master-worker topology. Experiments on the Perlmutter cluster demonstrated significant performance improvements, with the parallel implementation reducing runtime from 64.72 seconds with 1 processor to 2.49 seconds with 63 processors. The parallel approach efficiently explored the design space, quickly converging on high-fitness vehicles with optimal configurations. Despite increased communication overhead with more processors, the overall reduction in computation time and enhanced design exploration confirmed the efficacy of our parallel implementation.</p>
+
         <h3>Introduction:</h3>
 
         <p>Many computational design problems involve searching large, complex spaces for suitable solutions. Genetic algorithms (GAs) are a popular method for efficiently navigating these spaces by mimicking natural selection, mixing and matching the best solutions to evolve better ones.
