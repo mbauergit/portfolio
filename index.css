@@ -626,3 +626,10 @@ body:not(.user-is-tabbing) a:focus {
     padding: 10px;
     text-align: left;
 }
+
+.image-container p {
+    margin-top: 0; /* Remove spacing above and below caption */
+    padding: 0; /* Remove padding */
+    font-size: 0.9em; /* Adjust font size as desired */
+    line-height: 1; /* Keep lines close if multiline */
+}

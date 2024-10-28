@@ -89,7 +89,13 @@
       
         <h3>Methods:</h3>
         <p>Our dataset comprises 26,535 images, divided into three disaster types: hurricane-matthew (11,151 images), socal-fire (8,380 images), and midwest-flooding (7,004 images), sourced from the xBD dataset. These images capture buildings before and after disasters, with human-analyzed 'truth' labels introducing potential bias due to subjective interpretation. Notably, there's a class imbalance, particularly in damage level 0. Additionally, image sizes vary across disaster types, with hurricane-matthew images being smaller. </p>
-      
+        
+        <div class="image-container">
+          <img src="./images/disaster_example1.png" alt="Disaster image data example">
+          <img src="./images/disaster_example2.png" alt="Disaster image data example">
+          <p>Examples Image from Dataset</p>
+        </div>
+        
         <p>Exploratory analysis revealed different features that could differentiate class types. Boxplots in figure 1 show that the distribution of RGB magnitudes varies among disaster types, providing an opportunity for differentiation. To enhance our analysis, we employed transformation techniques such as grayscale conversion and filters like Sobel Edge, Local Binary Pattern, and Gabor, which offered additional features for discriminating damage levels. This is visualized in figure 2 which shows that images with a higher damage level have different edge and textural patterns than those without such damage. These analyses guided our model development, especially in distinguishing different levels of damage.</p>
         <div class="image-container">
           <img src="./images/ucb-ds-fig1.png" alt="Disconnected arteries from predicted output">
