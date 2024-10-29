@@ -1,0 +1,157 @@
+<!-- 
+  Hello 😊.
+
+  This template is designed and developed by Nisar Hassan Naqvi
+  for anyone to use for free or customize the way they like.
+
+  Github Repo: https://github.com/nisarhassan12/portfolio-template/
+  My Website: https://nisar.dev
+
+  For business & inquires, contact me => syednisarhassan12@gmail.com
+-->
+
+<!--
+  Follow the instructions written in comments to create your stunning portfolio
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" type="image/png" href="./images/favicon.png" />
+
+  <!-- Put your site title here -->
+  <title>
+    Markus Bauer
+  </title>
+
+  <meta name="description" content="Add small description of yourslef.">
+  <!-- Add some coding keywords below, Ex: (React, CSS etc) -->
+  <meta name="keywords" content="Put your name, skills and some coding keywords" />
+  <link rel="stylesheet" href="index.css" />
+</head>
+
+<body>
+
+  <!-- ***** Header ***** -->
+
+  <header class="header" role="banner" id="top">
+    <div class="row">
+      <nav class="nav" role="navigation">
+        <ul class="nav__items">
+          <li class="nav__item">
+            <a href="index.html#about" class="nav__link">About</a>
+          </li>
+          <li class="nav__item"><a href="https://drive.google.com/file/d/1HeH-bjMwixnRRlYcqQJ_qjCEP9w_bzHj/view?usp=sharing" class="nav__link" target="_blank">Resume</a></li>
+          <li class="nav__item"><a href="index.html#work" class="nav__link">Projects</a></li>
+          <li class="nav__item"><a href="index.html#clients" class="nav__link">Skills</a></li>
+          <li class="nav__item">
+            <a href="index.html#contact" class="nav__link">Contact</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="header__text-box row">
+      <div class="header__text">
+        <h1 class="heading-primary">
+          <!-- Replace the following name with your name -->
+          <span>Traffic Signal Schedule Correction Tool</span>
+        </h1>
+        <!-- Put a small paragraph about yourself -->
+        <p>Miovision Project (08/2024 - 09/2024)</p>
+        <ul class="work__list">
+          <li>Computer Vision</li>
+          <li>Convolutional Neural Networks</li>
+          <li>LLM Finetuning</li>
+          <li>Python (Numpy, Pandas, Pytorch, Huggingface)</li>
+        </ul>
+        <a href="#project summary" class="btn btn--pink">Project Description</a>
+        <a href="#personal takeaways" class="btn btn--pink">Personal Takeaways</a>
+      </div>
+    </div>
+  </header>
+
+  <main role="main">
+    <section class="about" id="project summary">
+      <div class="row">
+        <h2>Project Description</h2>
+
+        <h3>Abstract:</h3>
+        <p>This project aimed to develop an automated tool to enhance traffic signal timing plans by detecting and correcting scheduling errors, a process previously conducted manually. After evaluating various machine learning algorithms, a 2D convolutional neural network (CNN) was chosen for its effectiveness in handling structured, grid-like data. Trained on a labeled dataset of signal timing schedules, the CNN model learned to predict optimal timing corrections, resulting in more realistic, consistent, and efficient signal schedules. With a focus on high accuracy and minimal computational overhead, the model achieved a 95% test accuracy and reduced correction time from five minutes per signal (manually) to an instant.</p>
+
+        <h3>Introduction:</h3>
+        <p> Traffic signal timing plays a crucial role in managing city traffic, as well-designed timing plans can improve traffic flow, reduce congestion, and increase road safety. In traffic management, timing plans define the specific signal settings, including the duration of green lights for each direction. The signal schedules are daily plans that specify which timing plan should be used at different hours of the day to match expected traffic patterns.</p>
+
+        <p>Miovision relies on these plans and schedules for its predictive traffic signal technology, often obtaining them from local transportation agencies. When these schedules aren’t available, Miovision generates predicted plans and schedules using vehicle GPS data. While effective, the generated schedules sometimes include small but noticeable errors, such as a single hour of one plan mistakenly inserted among consecutive hours of another - as shown in Figure 1. Manually correcting these errors takes around five minutes per signal—time-consuming work when thousands of signals require adjustment. The goal of this project was to use machine learning to automatically correct these errors, reducing manual work and speeding up the production of accurate timing schedules.</p>
+        
+        <div class="image-container">
+          <img src="./images/MV_example2.png" alt="Example of bad schedule">
+          <p>Figure 1. Example of a bad schedule</p>
+        </div>
+
+        <h3>Methods:</h3>
+        <p>The initial strategy for developing this tool involved fine-tuning a large language model (LLM) to understand the relationships between input schedules and corrected schedules. Given that the data was in JSON format, the idea was to input a bad JSON and have the model output a corrected JSON with adjusted values. Below in Figure 2, we present an example of one day from the input and output JSON. Note how the output schedule is simplified and more consistent across the days of the week.</p>
+        
+        <div class="image-container">
+          <img src="./images/MV_bad_json.png" alt="Bad JSON">
+          <img src="./images/MV_good_json.png" alt="Good JSON">
+          <p>Figure 2. Comparison Between Bad and Good JSON</p>
+        </div>
+        
+        <p>However, after fine-tuning the Llama 2 model using QLoRA, I realized that this approach would not be sufficient due to a lack of data. The dataset I had available consisted of only 350 example JSONs with hand labeled corrections as the ground truths. With this limited amount, the model struggled to generalize effectively to unseen test data. Additionally, the structure of the JSONs varied based on the specific schedules, which further complicated the model's ability to learn from the limited examples.</p>
+
+        <p>To gain deeper insights into the manual correction process, I consulted with operations employees to understand their approach. Although they followed certain guidelines, the presence of numerous edge cases made it impractical to create a simple rule-based algorithm. I learned that the ideal schedule could often be inferred by examining the hourly schedule and identifying the errors visually, such as in Figure 1. This methodology inspired me to approach the problem as a computer vision task, leading to the decision to use Convolutional Neural Networks (CNNs).</p>
+
+        <p>To do this, the first step involved building hourly schedules by constructing a 7x24 table for each traffic signal, representing the hourly schedule for every day of the week. This is to change the input from a JSON into a table like structure that mimics the visual that the employees look at when correcting manually. An example is shown below in Figure 3. The table was stored as a Pandas Dataframe</p>
+
+        <div class="image-container">
+          <img src="./images/MV_df_example.png" alt="Bad JSON">
+          <p>Figure 3. Example Schedule Dataframe</p>
+        </div>
+
+        <p>Then I created two CNN models using PyTorch, one for the weekdays that took in a 5x24 tensor as the input (5 weekdays & 24 hours) and one for the weekends that took in a 2x24 tensor as an input (2 weekend days & 24 hours). This is because one of the governing rules is that the weekday schedules must all be the same so instead of having the model treat each day as an independent schedule, it can capture interdependencies of all the weekdays and make predictions about a day based on the others. I applied a post processing step that had the plan for an hour of a weekday be the mode of that hour for all weekdays.</p>
+
+        <p>The CNN model architecture used convolutional layers to identify patterns in timing plan schedules and ensure consistency across weekdays and weekends. The model begins with three 2D convolutional layers, each extracting increasingly complex features from the 5x24 or 2x24 input matrices. Batch normalization is applied after each convolutional layer to stabilize training, while max pooling progressively reduces the spatial dimensions, focusing on the most significant patterns within each time interval. Following this, a fully connected layer compresses these features into a dense representation, and a dropout layer helps prevent overfitting. A final fully connected layer produces a flattened 5x24 or 2x24 prediction, which is then reshaped to match the desired output format for daily schedules. The output is then converted back into the appropriate JSON format. This architecture, tailored for detecting spatial dependencies within timing data, ultimately generates corrected schedules in a structured and interpretable format. A visualization of the general structure is shown below in Figure 4.</p>
+
+        <div class="image-container">
+          <img src="./images/MV_CNN_architecture.png" alt="Architecture of CNN Model">
+          <p>Figure 4. Architecture of Complete Model</p>
+        </div>
+
+        <p>One major challenge that still remained in developing this model was the limited dataset of only 350 examples. To address this, I treated the schedules like images and applied various transformations to generate a more robust and extensive dataset. By applying shifts, reflections, rotations, and adding random errors and noise to the schedule matrices, I expanded the dataset significantly, transforming the original 350 data points into over 200,000 synthetic examples. This enhanced the model's ability to generalize and improved its performance on unseen data.</p>
+        
+        <h3>Results and Analysis:</h3>
+        
+        <p>To train, I used a 90-10 training-validation split, and then tested the CNN models on a held out test set of 35 signals. I used accuracy at an hourly level as my performance metric, meaning a signal's accuracy was measured by how many plan's it got out correct out of the 168 hours of the week. The models achieved a test accuracy of 95%, effectively learning to distinguish between correct and incorrect timing plans. Compared to manual correction processes that took up to 5 minutes per signal, the model reduced correction time to instantaneous. Analysis of the results also showed a pattern amongst outputs that suggested signs of incorrect predictions. I added a post processing step to separate these predictions from the ones with high confidence to be later examined by a human.</p>
+
+        <div class="image-container">
+            <img src="./images/MV_output_example.png" alt="MV Output Example">
+            <p>Figure 5. Example Output (Prior to JSON Conversion)</p>
+        </div>
+                
+      </div>
+
+    </section>
+
+    <section class="about" id="personal takeaways">
+      <div class="row">
+        <h2>Personal Takeaways</h2>
+        <p>Working on this project provided a practical application of CNNs in a domain outside traditional image processing. I learned how to adapt CNNs for structured non-image data, specifically for traffic management tasks, which broadened my understanding of model flexibility. Additionally, this project underscored the importance of data augmentation in generating a robust training dataset, as the initial sample size was limited, and increasing the number of training samples via data augmentation significantly improved model performance. Lastly, the most valuable takeaway is that I learned the importance of understanding the entire problem and starting out simple. Although LLMs initially seemed like the best solution because on how advanced and powerful they have gotten, understanding the problem and the manual process made me realize it was overkill and that simpler machine learning techniques were sufficient yet still effective. This not only led to better results, but saved computation time and power as GPUs were not needed for inference.</p>
+        
+        <div class="back-button">
+          <a href="index.html#work">&larr; Back to Home</a>
+      </div>  
+      <script src="./index.js"></script>
+      </div>
+
+    </section>
+
+
+
+  </main>
+  
+</body>
+
+</html>
